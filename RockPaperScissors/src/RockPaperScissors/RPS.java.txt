@@ -1,0 +1,264 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication15;
+import java.util.Scanner;
+/**
+ *
+ * @author vanes
+ */
+public class JavaApplication15 {
+    
+    
+
+    /**
+     * @param args the command line arguments
+     */
+    public static String[] selection_GUI(int selection) {
+        // 0 = scissor / 1 = rock / 2 = paper 
+      String [] options = {"   _______\n"
+        +"---'   ____)___\n"
+        +"          ______)\n"
+        +"       __________)\n"
+        +"      (____)\n"
+        +"---.__(___)\n",
+        "    _______ \n"
+        + "---'   ____) \n"
+        + "      (_____) \n"
+        + "      (_____) \n"    
+        + "      (____) \n"
+        + "---.__(___) \n", 
+        "    _______\n"
+        + "---'   ____)___\n"
+        + "          ______)\n"
+        + "          _______)\n"
+        + "         _______)\n"
+        + "---.__________)\n"}
+; 
+      return options;
+    }
+    
+    public static int[] Add_array_item(int curr_array_size, int arr[], int x)
+    {
+        int i;
+       // create a new array of size n+1
+        int new_array[] = new int[curr_array_size + 1];
+  
+        // Java arrays are immutable
+        // So I have to rebuild the array any time I need to add an extra item
+        for (i = 0; i < curr_array_size; i++)
+            new_array[i] = arr[i];
+        new_array[curr_array_size] = x;
+//        System.out.println(new_array);
+        return new_array;
+    }
+
+    public static int Verify_Winner(int player, int computer, String name) {
+        // 0 = Win, 1 = Loss, 2 = Draw
+        int result = 0;
+        if (player == computer) {
+             // do something win
+                    System.out.print("It's a draw!");
+                    result = 2;
+        }
+        if ((player == 0 && computer == 2) 
+                || (player == 1 && computer == 0)
+                || (player == 2 && computer == 1))
+                {
+                    // do something win
+                    System.out.print("Great job, " + name + "! You won!");
+                    result = 0;
+            }
+        if ((player == 0 && computer == 1) 
+                || (player == 1 && computer == 2)
+                || (player == 2 && computer == 0))
+                {
+                    // do something loss
+                    System.out.print("Sorry, " + name + "... You lose!");
+                    result = 1;
+            }
+        return result;
+    }
+    
+    public static void clear_screen(){
+        for (int i = 0; i <= 8; i++){
+            System.out.println(" \n");
+        }
+    }
+    
+    
+    public static void sleep_timer() {
+        try
+        {
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
+    
+    
+    public static void show_stats( int[] comp_arr, int[] play_arr, int[] res_arr, String name){
+        // Calculate Computer picks
+         // 0 = scissor / 1 = rock / 2 = paper
+        int i = 0;
+        int comp_scissors_pick = 0;
+        int comp_rock_pick = 0;
+        int comp_paper_pick = 0;
+        int player_scissors_pick = 0;
+        int player_rock_pick = 0;
+        int player_paper_pick = 0;
+        int player_wins = 0;
+        int player_losses = 0;
+        int player_draws = 0;
+        for (i = 0; i < comp_arr.length; i++) {
+            switch ((int)comp_arr[i]) {
+                    case 0:
+                         comp_scissors_pick++;
+                         break;
+                    case 1:
+                          comp_rock_pick++;
+                          break;
+                    case 2:
+                          comp_paper_pick++;
+                          break;
+            }
+            System.out.print(comp_arr[i]);
+        }
+            System.out.print(comp_scissors_pick);
+            System.out.print(comp_rock_pick);
+            System.out.print(comp_paper_pick);
+        System.out.println("Games Stats, thanks for playing!!!\n");
+        System.out.println("Yuumi pick's stats:");
+        System.out.println("Rock: " + Math.round((((double)comp_scissors_pick/ (double)comp_arr.length) * 100))   + "%") ;
+        System.out.println("Paper: " + Math.round((((double)comp_rock_pick/ (double)comp_arr.length) * 100))   + "%");
+        System.out.println("Scissors: " + Math.round((((double)comp_paper_pick/ (double)comp_arr.length) * 100))   + "%");
+        for (i = 0; i < play_arr.length; i++) {
+            switch ((int)play_arr[i]) {
+                    case 0:
+                         player_scissors_pick++;
+                         break;
+                    case 1:
+                          player_rock_pick++;
+                          break;
+                    case 2:
+                          player_paper_pick++;
+                          break;
+            }
+//            System.out.print(play_arr[i]);
+        }
+        System.out.println(name + " pick's stats:");
+        System.out.println("Rock: " + Math.round((((double)player_scissors_pick/ (double)play_arr.length) * 100))   + "%");
+        System.out.println("Paper: " + Math.round((((double)player_rock_pick/ (double)play_arr.length) * 100))   + "%");
+        System.out.println("Scissors: " + Math.round((((double)player_paper_pick/ (double)play_arr.length) * 100))   + "%");
+        for (i = 0; i < res_arr.length; i++) {
+            switch ((int)res_arr[i]) {
+                    case 0:
+                         player_wins++;
+                         break;
+                    case 1:
+                          player_losses++;
+                          break;
+                    case 2:
+                          player_draws++;
+                          break;
+            }
+//            System.out.print(res_arr[i]);
+        }
+        System.out.println("Game results stats:");
+        System.out.println(name + " won " + player_wins + " times");
+//                and Yuumi " + (res_arr.length - player_wins) + " times");
+        System.out.println(name + " lost " + player_losses + " times");
+//                and Yuumi "" + " + (res_arr.length - player_losses) + " times");
+        System.out.println(name + " drawn " + player_draws + " times");
+//                and Yuumi "" + " + (res_arr.length - player_draws) + " times");
+        System.out.println(name + " wins:" + Math.round(((double)((double)player_wins/ (double)res_arr.length) * 100)) + "% of times");
+//                + " and Yuumi's:  " + ((1 - (double)((double)player_wins/ (double)res_arr.length)) * 100));
+        System.out.println(name + " loses:" + Math.round(((double)((double)player_losses/ (double)res_arr.length) * 100)) + "% of times");
+//                + " and Yuumi's:  " + ((1 - (double)((double)player_losses/ (double)res_arr.length)) * 100));
+        System.out.println(name + " draws:" + Math.round(((double)((double)player_draws/ (double)res_arr.length) * 100)) + "% of times");
+//                + " and Yuumi's:  " + ((1 - (double)((double)player_draws/ (double)res_arr.length)) * 100));
+    }
+
+            
+    public static String introduction(){
+        String name;
+        Scanner input = new Scanner (System.in);
+        System.out.println("Welcome to Rock, Paper, Scissors!");
+        System.out.println("I'm Yuumi, your computer buddy :). You'll be playing against me! Good luck!");
+        System.out.print("What is your name, player? ");
+        return (name = input.nextLine());
+    }
+    public static int num_of_rounds(){
+        int rounds;
+        Scanner input = new Scanner (System.in);
+        System.out.print("How many rounds would you like to play (min. 4)? ");
+        rounds = input.nextInt();
+        if (rounds < 4){
+            System.out.print("You've entered a number under 4... So we can just play four rounds! \n");
+            rounds = 4;
+        }
+        else{
+            System.out.print("Ok!... Let's play " + rounds + " rounds! \n");
+        }
+        return rounds;
+        
+    }
+    public static void main(String[] args) {
+        boolean run_game = true;
+        int[] computer_picks = new int[0];
+        int[] player_picks = new int[0];
+        int[] player_results = new int[0];
+        String name = introduction();
+        int rounds = num_of_rounds();
+        while (run_game == true && rounds > 0){
+        Scanner input = new Scanner (System.in);
+        
+        int player;
+        int computer;
+
+        System.out.print("What do you choose, " + name + "? Type 0 for Scissors, 1 for Rock or 2 for Paper. Or 9 to exit. ");
+        player = input.nextInt();
+        if (player == 9) {
+            System.out.println("Thanks for playing, " + name + "! See you later!");
+            run_game = false;
+            continue;
+        }
+        if (player < 0 || player >2) {
+            //do some
+             System.out.print("That isn't a valid answer. Remember, " + name + ", only 0, 1 , 2, and 9 are accepted!");
+             sleep_timer();
+             clear_screen();
+             continue;
+        }
+      
+        computer = (int)Math.round(Math.random() * 2);
+
+        System.out.println(selection_GUI(player)[player]);
+
+        System.out.println(selection_GUI(computer)[computer]);
+        
+        computer_picks = Add_array_item(computer_picks.length, computer_picks, computer);
+        
+        player_picks = Add_array_item(player_picks.length, player_picks, player);
+        
+        int player_result = Verify_Winner(player, computer, name);
+        
+        player_results = Add_array_item(player_results.length, player_results, player_result);
+        
+        sleep_timer();
+        
+        clear_screen();
+        
+        rounds--;
+        }
+//        System.out.print(computer_picks.length);
+//        System.out.print(player_picks.length);
+//        System.out.print(player_results.length);
+        // show_stats
+        show_stats(computer_picks, player_picks, player_results, name );
+    }
+}

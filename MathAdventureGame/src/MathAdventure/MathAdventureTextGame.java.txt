@@ -1,0 +1,164 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication6;
+import java.util.Scanner;
+/**
+ *
+ * @author vanes
+ */
+public class JavaApplication6 {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+   
+    public static void main(String[] args) {
+
+    String shirt="";
+    String sandwich="";
+    System.out.println("Welcome to your Math Test Adventure! The goal is simple, make it to school in time and pass your math test.");
+    boolean run_game = true;
+    while (run_game == true){
+    Scanner input = new Scanner(System.in);
+    System.out.print("Do you want to play? Type 'yes' or 'no'(every choice in the game will be a yes or no answer) ");
+    String begin = input.nextLine();
+    //make this a switch maybe????
+    if (begin.equals("yes")){
+      System.out.println("It's a beautiful, sunny Friday. You slowly open your eyes and glance at your alarm clock. Oh no! You're going to be late for school!");
+      System.out.print("Will you get out of bed and start your day? ");
+      String wake_up = input.nextLine();
+      if (wake_up.equals("yes")){
+          System.out.println("You jump out of bed and rush to the bathroom to get ready. Now, you just have to decide what to wear...");
+          System.out.print("You pick out a red T-shirt from your closet. Will you wear it? ");
+          String wear_red = input.nextLine();
+          if (wear_red.equals("yes")){
+              shirt = "red";
+          }
+          else if (wear_red.equals("no")){
+              System.out.print("Hmmm... Alright, what about this green shirt? ");
+              String wear_green = input.nextLine();
+              if (wear_green.equals("yes")){
+                  shirt = "green";
+              }
+              else if (wear_green.equals("no")){
+                  System.out.println("You decide to wear the only other shirt you own besides the previous two... It's blue.");
+                  shirt = "blue";
+              }
+              else{
+                  System.out.println("That's not a proper response. Remember, only 'yes' and 'no' are accepted!");
+                  run_game = false;
+              }
+          }
+          else{
+               System.out.println("That's not a proper response. Remember, only 'yes' and 'no' are accepted!");
+               run_game = false;
+          }
+          
+      
+          System.out.println("After contemplating about which shirt to pick for a few minutes, you've finally decided! You head downstairs to get your lunch. It seems like you have more than one sandwich option today! Peanut butter & jam (PB&J) and... tuna. You've always hated tuna.");
+          System.out.print("Will you take the PB&J sandwich? ");
+          String take_PBJ = input.nextLine();
+          if (take_PBJ.equals("yes")){
+              sandwich = "pb&j";
+              
+          }
+          else if (take_PBJ.equals("no")){
+              System.out.println("You reluctantly take the tuna sandwich. It can't be that bad!");
+              sandwich = "tuna";
+          }
+          else{
+              System.out.println("That's not a proper response. Remember, only 'yes' and 'no' are accepted!");
+               run_game = false;
+          }
+          System.out.println("You grab your sandwich of choosing and book it out the front door. You are about to get on your bike, but your parent calls out. They're asking you if you want them to drive you to school.");
+          System.out.print("Well, do you accept their offer? ");
+          String drive_to_school = input.nextLine();
+          if (drive_to_school.equals("yes")){
+              System.out.println("You get in the car, they pull out of the driveway and onto the road. You wait... and wait... and wait... Turns out there's a lot of traffic today, and there's no way you're getting to school on time! ");
+              run_game = false;
+          }
+          else if (drive_to_school.equals("no")){
+              System.out.println("You politely decline their offer and start peddling to school on your bike. Biking is better for the enviroment anyways.");
+              System.out.println("You peddle faster than you ever have before and manage to make it to school before the bell rings! You lock your bike onto the racks and- oh, someone seems to be blocking your path to the door. It's the Cat Bully (half cat, half bully), and he wants your lunch!");
+          if (sandwich.equals("tuna")){
+              System.out.println("You hand over your tuna sandwich, you didn't really want it after all. Luckily, tuna is Cat Bully's favourite food! He lets you pass.");
+              System.out.println("You dash through the halls and enter your math class. Wow, even with a few minutes to spare! You get seated and dig through your desk for your pencil. Suddenly, you hear a large roar coming from the door. It's a dragon?!?!?");
+              if (shirt.equals("green")){
+                  System.out.println("The dragon has a mission, to carry anyone not wearing green to her castle far, far away. You're wearing green today so you're safe. I guess green really is a lucky colour!");
+                  System.out.println("The time has finally come; all you have to do is answer all the questions correctly. If you do so, you'll ace the test and win the game!");
+                  System.out.println("Good luck. Let's start!");
+                  System.out.print("2 + 2 = ");
+                  int answer1 = input.nextInt();
+                  if (answer1 == 4){
+                      System.out.println("Correct! Next question.");
+                      System.out.print("5 x 8 = ");
+                      int answer2 = input.nextInt();
+                      if (answer2 == 40){
+                          System.out.println("Correct! Last Question.");
+                          System.out.println("Find y: 144 / y = 9");
+                          System.out.print("y = ");
+                          int answer3 = input.nextInt();
+                          if (answer3 == 16){
+                              System.out.println("CONGRATULATIONS! You've made it to school in time and aced your test!");
+                              System.out.println("Thank you for playing and try again if you want to see the other endings!");
+                          }
+                          else{
+                              System.out.println("That answer is incorrect. Looks like you failed your math test, and after all that work to make it to class on time!");
+                              run_game = false;
+                          }
+                      }else{
+                          System.out.println("That answer is incorrect. Looks like you failed your math test, and after all that work to make it to class on time!");
+                          run_game = false;
+                      }
+                  }
+                  else{
+                      System.out.println("That answer is incorrect. Looks like you failed your math test, and after all that work to make it to class on time!");
+                      run_game = false;
+                  }
+                  
+              }else{
+                  System.out.println("The dragon has a mission, to carry anyone not wearing green to her castle far, far away. Looks like everyone in the class got the memo, except you. Have a fun time living in the dragon's castle!");
+                  run_game = false;
+              }
+              
+          }
+          else {
+              System.out.println("You hand over your PB&J sandwich. Apparently, he hates peanut butter AND jam! He blocks the door for the entire period, making you (and everyone behind you who has also been waiting) unable to enter the school.");
+              run_game = false;
+          }
+          }
+          else{
+              System.out.println("That's not a proper response. Remember, only 'yes' and 'no' are accepted!");
+               run_game = false;
+          }
+          
+          
+      }
+      else if (wake_up.equals("no")){
+          System.out.println("You decide to sleep in and miss the VERY IMPORTANT math test. Oh well.");
+          run_game = false;
+      }
+      else{
+          System.out.println("That's not a proper response. Remember, only 'yes' and 'no' are accepted!");
+          run_game = false;
+      }
+      
+
+
+    }
+    else if (begin.equals("no")){
+        System.out.println("That's okay! See you later!");
+    }
+    else{
+        System.out.println("That's not a proper response. Remember, only 'yes' and 'no' are accepted!");
+    }
+        
+    }
+    
+  }
+}
+
